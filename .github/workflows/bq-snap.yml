@@ -6,15 +6,15 @@ on:
       ProjectID:
         description: 'GCP project id'
         required: true
-        default: 'th-thaiml-lab-5e7e30'
+        default: 'james-bond'
       Dataset:
         description: 'BigQuery dataset'
         required: true
-        default: 'sandbox_thdocqa_22_operational'
+        default: 'dstest001'
       GCSBucket:
         description: 'GCS bucket'
         required: true
-        default: 'active-test-sandbox'
+        default: 'test-bucket'
       environment:
         type: choice
         description: 'environment name'
