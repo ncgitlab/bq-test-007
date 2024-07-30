@@ -56,5 +56,5 @@ jobs:
         #   GCS_BUCKET: ${{ inputs.GCSBucket }}
         #   TABLES: ${{ inputs.Tables }}
         run: |
-          echo ${{env.prefix}}
+          echo ${{env.prefix}}-bq
           #bash snapshot_export.sh ${{ inputs.ProjectID }} ${{ inputs.Dataset }} ${{ inputs.GCSBucket }} ${{ inputs.environment }}
