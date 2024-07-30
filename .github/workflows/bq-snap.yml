@@ -3,18 +3,18 @@ name: Snapshot and Export Tables
 on:
   workflow_dispatch:
     inputs:
-      ProjectID:
-        description: 'GCP project id'
-        required: true
-        default: 'james-bond'
-      Dataset:
-        description: 'BigQuery dataset'
-        required: true
-        default: 'dstest001'
-      GCSBucket:
-        description: 'GCS bucket'
-        required: true
-        default: 'test-bucket'
+      # ProjectID:
+      #   description: 'GCP project id'
+      #   required: true
+      #   default: 'james-bond'
+      # Dataset:
+      #   description: 'BigQuery dataset'
+      #   required: true
+      #   default: 'dstest001'
+      # GCSBucket:
+      #   description: 'GCS bucket'
+      #   required: true
+      #   default: 'test-bucket'
       environment:
         type: choice
         description: 'environment name'
@@ -53,6 +53,5 @@ jobs:
         #   GCS_BUCKET: ${{ inputs.GCSBucket }}
         #   TABLES: ${{ inputs.Tables }}
         run: |
-          pwd
-          ls -la
-          bash snapshot_export.sh ${{ inputs.ProjectID }} ${{ inputs.Dataset }} ${{ inputs.GCSBucket }} ${{ inputs.environment }}
+          echo "${{inputs.environment}}-${{env.Project_Name}}-${{env.ID}}"
+          #bash snapshot_export.sh ${{ inputs.ProjectID }} ${{ inputs.Dataset }} ${{ inputs.GCSBucket }} ${{ inputs.environment }}
