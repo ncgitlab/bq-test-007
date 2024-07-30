@@ -54,6 +54,6 @@ jobs:
         #   TABLES: ${{ inputs.Tables }}
         run: |
           echo "prefix=${{inputs.environment}}-${{vars.Project_Name}}-${{vars.ID}}" >> $GITHUB_ENV
-          bucket_name=${{env.prefix}}-bq-snap
+          echo "bucket_name=${{env.prefix}}" >> $GITHUB_ENV
           echo "$bucket_name"
           #bash snapshot_export.sh ${{ inputs.ProjectID }} ${{ inputs.Dataset }} ${{ inputs.GCSBucket }} ${{ inputs.environment }}
