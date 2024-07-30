@@ -1,0 +1,58 @@
+name: Snapshot and Export Tables
+
+on:
+  workflow_dispatch:
+    inputs:
+      ProjectID:
+        description: 'GCP project id'
+        required: true
+        default: 'th-thaiml-lab-5e7e30'
+      Dataset:
+        description: 'BigQuery dataset'
+        required: true
+        default: 'sandbox_thdocqa_22_operational'
+      GCSBucket:
+        description: 'GCS bucket'
+        required: true
+        default: 'active-test-sandbox'
+      environment:
+        type: choice
+        description: 'environment name'
+        default: 'dev'
+        options: 
+        - dev
+        - qa
+        - sandbox
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      # - name: Auth GCP Service Account
+      #   id: auth-gcp
+      #   uses: google-github-actions/auth@v2
+      #   with:
+      #     token_format: 'access_token'
+      #     workload_identity_provider: ${{ secrets.DEV_PROVIDER_NAME }} # this is the provider_name configured in github secret 
+      #     service_account: ${{ secrets.DEV_SA_EMAIL }} # this is a SA email configured in github secret
+      
+      # - name: 'Set up Cloud SDK'
+      #   uses: 'google-github-actions/setup-gcloud@v2'		  
+      
+      # - name: Grant execute permission for the script
+      #   run: chmod +x .github/workflows/snapshot-and-export.sh
+      
+      - name: Run Snapshot and Export Script
+        working-directory: .github/workflows
+        # env:
+        #   PROJECT_ID: ${{ inputs.ProjectID }}
+        #   DATASET: ${{ inputs.Dataset }}
+        #   GCS_BUCKET: ${{ inputs.GCSBucket }}
+        #   TABLES: ${{ inputs.Tables }}
+        run: |
+          pwd
+          ls -la
+          bash snapshot_export.sh ${{ inputs.ProjectID }} ${{ inputs.Dataset }} ${{ inputs.GCSBucket }} ${{ inputs.environment }}
