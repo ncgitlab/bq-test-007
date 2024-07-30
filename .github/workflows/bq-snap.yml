@@ -54,4 +54,6 @@ jobs:
         #   TABLES: ${{ inputs.Tables }}
         run: |
           echo "${{inputs.environment}}-${{env.Project_Name}}-${{env.ID}}"
+          echo "PROJECTID: ${{ env.PROJECTID }}"
+          echo "PROJECT_NAME: ${{ env.PROJECT_NAME }}"
           #bash snapshot_export.sh ${{ inputs.ProjectID }} ${{ inputs.Dataset }} ${{ inputs.GCSBucket }} ${{ inputs.environment }}
