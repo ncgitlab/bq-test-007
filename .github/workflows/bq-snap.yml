@@ -25,7 +25,7 @@ on:
         - sandbox
 
 jobs:
-  build:
+  bqSnapshot:
     runs-on: ubuntu-latest
     environment: ${{inputs.environment}}
     steps:
@@ -54,6 +54,5 @@ jobs:
         #   TABLES: ${{ inputs.Tables }}
         run: |
           echo "prefix=${{inputs.environment}}-${{vars.Project_Name}}-${{vars.ID}}" >> $GITHUB_ENV
-          echo "bucket_name=${{env.prefix}}" >> $GITHUB_ENV
-          echo "$bucket_name"
+          echo "bucket_name=$prefix-bq-snap"
           #bash snapshot_export.sh ${{ inputs.ProjectID }} ${{ inputs.Dataset }} ${{ inputs.GCSBucket }} ${{ inputs.environment }}
