@@ -54,8 +54,9 @@ jobs:
         #   TABLES: ${{ inputs.Tables }}
         run: |
           echo "prefix=${{inputs.environment}}-${{vars.Project_Name}}-${{vars.ID}}" >> $GITHUB_ENV
-          echo "prefix=${{ inputs.environment }}-${{ vars.Project_Name }}-${{ vars.ID }}" >> $GITHUB_ENV
-          echo "bucket_name=${{ inputs.environment }}-${{ vars.Project_Name }}-${{ vars.ID }}" >> $GITHUB_ENV
+          prefix="${{ inputs.environment }}-${{ vars.Project_Name }}-${{ vars.ID }}"
+          echo "prefix=$prefix" >> $GITHUB_ENV
+          echo "bucket_name=$prefix" >> $GITHUB_ENV
           echo "prefix=$prefix"
-          echo "bucket_name=$bucket_name"
+          echo "bucket_name=$prefix"
           #bash snapshot_export.sh ${{ inputs.ProjectID }} ${{ inputs.Dataset }} ${{ inputs.GCSBucket }} ${{ inputs.environment }}
