@@ -53,7 +53,7 @@ jobs:
         #   GCS_BUCKET: ${{ inputs.GCSBucket }}
         #   TABLES: ${{ inputs.Tables }}
         run: |
-          echo "${{inputs.environment}}-${{env.Project_Name}}-${{env.ID}}"
-          echo "PROJECTID: ${{ env.PROJECTID }}"
-          echo "PROJECT_NAME: ${{ env.PROJECT_NAME }}"
+          echo "${{inputs.environment}}-${{vars.Project_Name}}-${{vars.ID}}"
+          echo "PROJECTID: ${{ vars.PROJECTID }}"
+          echo "PROJECT_NAME: ${{ vars.PROJECT_NAME }}"
           #bash snapshot_export.sh ${{ inputs.ProjectID }} ${{ inputs.Dataset }} ${{ inputs.GCSBucket }} ${{ inputs.environment }}
