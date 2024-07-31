@@ -31,13 +31,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      # - name: Auth GCP Service Account
-      #   id: auth-gcp
-      #   uses: google-github-actions/auth@v2
-      #   with:
-      #     token_format: 'access_token'
-      #     workload_identity_provider: ${{ secrets.DEV_PROVIDER_NAME }} # this is the provider_name configured in github secret 
-      #     service_account: ${{ secrets.DEV_SA_EMAIL }} # this is a SA email configured in github secret
       
       # - name: 'Set up Cloud SDK'
       #   uses: 'google-github-actions/setup-gcloud@v2'		  
