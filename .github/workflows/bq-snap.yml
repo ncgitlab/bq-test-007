@@ -48,7 +48,7 @@ jobs:
       - name: Set prefix
         run: |
           echo "prefix=${{ inputs.environment }}-${{ vars.Project_Name }}-${{ vars.ID }}" >> $GITHUB_ENV
-          echo "bucket_name=${{env.prefix}}-bucket" >> $GITHUB_ENV
+          echo "bucket_name=$prefix-bucket" >> $GITHUB_ENV
         
       - name: Run Snapshot and Export Script
         working-directory: .github/workflows
