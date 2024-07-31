@@ -46,7 +46,9 @@ jobs:
       #   run: chmod +x .github/workflows/snapshot-and-export.sh
       
       - name: Set prefix
-        run: echo "prefix=${{ inputs.environment }}-${{ vars.Project_Name }}-${{ vars.ID }}" >> $GITHUB_ENV
+        run: |
+          echo "prefix=${{ inputs.environment }}-${{ vars.Project_Name }}-${{ vars.ID }}" >> $GITHUB_ENV
+          echo "bucket_name=${{env.prefix}}-bucket" >> $GITHUB_ENV
         
       - name: Run Snapshot and Export Script
         working-directory: .github/workflows
@@ -57,6 +59,6 @@ jobs:
         #   TABLES: ${{ inputs.Tables }}
         run: |
           echo ${{env.prefix}}-bq
-          echo "bucket_name=${{env.prefix}}-bucket"
+          echo "print bucket name"
           echo $bucket_name
           #bash snapshot_export.sh ${{ inputs.ProjectID }} ${{ inputs.Dataset }} ${{ inputs.GCSBucket }} ${{ inputs.environment }}
