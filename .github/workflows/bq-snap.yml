@@ -60,5 +60,5 @@ jobs:
         run: |
           echo ${{env.prefix}}-bq
           echo "print bucket name"
-          echo $bucket_name
+          echo ${{env.bucket_name}}
           #bash snapshot_export.sh ${{ inputs.ProjectID }} ${{ inputs.Dataset }} ${{ inputs.GCSBucket }} ${{ inputs.environment }}
