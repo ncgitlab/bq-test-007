@@ -50,7 +50,7 @@ jobs:
           echo "prefix=${{ inputs.environment }}-${{ vars.Project_Name }}-${{ vars.ID }}" >> $GITHUB_ENV
           echo "BUCKET_NAME=${{ inputs.environment }}-${{ vars.Project_Name }}-${{ vars.ID }}-bq-snapshot" >> $GITHUB_ENV
           echo "Dataset_ID=${{ inputs.environment }}-${{ vars.Project_Name }}-${{ vars.ID }}ds" >> $GITHUB_ENV
-          echo "ProjectID=${{ vars.ProjectID }}"
+          echo "ProjectID=${{ vars.ProjectID }}"  >> $GITHUB_ENV
       
       - name: Run Snapshot and Export Script
         working-directory: .github/workflows
