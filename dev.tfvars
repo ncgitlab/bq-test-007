@@ -1,0 +1,7 @@
+project = "th-hdo-docqa-nonprod-dev-b4be"
+project_number = "622464616335"
+region = "northamerica-northeast1"
+environment = "dev"
+id = "01"
+role="oidc"
+project_name = "thdocqa"
