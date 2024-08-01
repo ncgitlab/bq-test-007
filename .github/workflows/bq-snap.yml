@@ -48,11 +48,7 @@ jobs:
 
       - name: Print environment variables
         run: |
-          echo "Project: ${{ env.project }}"
-          echo "Project Number: ${{ env.project_number }}"
-          echo "Region: ${{ env.region }}"
-          echo "Environment: ${{ env.environment }}"
-          echo "ID: ${{ env.id }}"
+           echo "hello world"
       - name: Set prefix
         run: |
           #echo "prefix=${{ inputs.environment }}-${{ vars.Project_Name }}-${{ vars.ID }}" >> $GITHUB_ENV
