@@ -37,18 +37,39 @@ jobs:
       
       # - name: Grant execute permission for the script
       #   run: chmod +x .github/workflows/snapshot-and-export.sh
-      - name: Read ${{inputs.environment}}.tfvars
+      # - name: Read ${{inputs.environment}}.tfvars
+      #   id: read_tfvars
+      #   run: |
+      #     while IFS='=' read -r key value; do
+      #       key=$(echo "$key" | tr -d ' ')
+      #       value=$(echo "$value" | tr -d ' "')
+      #       echo "$key=$value" >> $GITHUB_ENV
+      #     done < ${{inputs.environment}}.tfvars
+      - name: Read ${{ inputs.environment }}.tfvars
         id: read_tfvars
         run: |
-          while IFS='=' read -r key value; do
+          # Read all lines of the file into an array
+          mapfile -t lines < ${{ inputs.environment }}.tfvars
+      
+          # Iterate over each line
+          for line in "${lines[@]}"; do
+            # Split the line into key and value
+            IFS='=' read -r key value <<< "$line"
+            
+            # Trim spaces and quotes from key and value
             key=$(echo "$key" | tr -d ' ')
             value=$(echo "$value" | tr -d ' "')
-            echo "$key=$value" >> $GITHUB_ENV
-          done < ${{inputs.environment}}.tfvars
+      
+            # Check if the key matches the specified ones
+            if [[ "$key" == "project_name" || "$key" == "id" || "$key" == "project" ]]; then
+              echo "$key=$value" >> $GITHUB_ENV
+            fi
+          done
 
       - name: Print environment variables
         run: |
            echo "hello world"
+           echo ${{env.project_name}}
       - name: Set prefix
         run: |
           #echo "prefix=${{ inputs.environment }}-${{ vars.Project_Name }}-${{ vars.ID }}" >> $GITHUB_ENV
