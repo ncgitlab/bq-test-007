@@ -37,7 +37,22 @@ jobs:
       
       # - name: Grant execute permission for the script
       #   run: chmod +x .github/workflows/snapshot-and-export.sh
-      
+      - name: Read dev.tfvars
+        id: read_tfvars
+        run: |
+          while IFS='=' read -r key value; do
+            key=$(echo "$key" | tr -d ' ')
+            value=$(echo "$value" | tr -d ' "')
+            echo "$key=$value" >> $GITHUB_ENV
+          done < ${{inputs.environment}}.tfvars
+
+      - name: Print environment variables
+        run: |
+          echo "Project: ${{ env.project }}"
+          echo "Project Number: ${{ env.project_number }}"
+          echo "Region: ${{ env.region }}"
+          echo "Environment: ${{ env.environment }}"
+          echo "ID: ${{ env.id }}"
       - name: Set prefix
         run: |
           echo "prefix=${{ inputs.environment }}-${{ vars.Project_Name }}-${{ vars.ID }}" >> $GITHUB_ENV
